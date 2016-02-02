@@ -21,7 +21,6 @@ public class CheckService extends Service {
     public  static final String HEART_BEAT_ACTION = "com.wyt.android.intent.alarm";
     private static final String ACCESSIBILITY_SERVICE = "com.example.administrator.topactivity/com.example.administrator.topactivity.HookService";
     private static final int MSG_HANDLE_CHECK = 1;
-    private static PendingIntent mAlarm;
 
     private Handler mHandler;
 
@@ -29,8 +28,9 @@ public class CheckService extends Service {
     public void onCreate() {
         super.onCreate();
         NgdsLog.initFileLoger(this, TAG);
+        NgdsLog.e(TAG, "onCreate");
         mHandler = new HandleRun();
-        mAlarm = Utils.startAlarmAndgetIntent(this, 5000);
+        Utils.startAlarmAndgetIntent(this, 5000);
     }
 
 
@@ -49,8 +49,6 @@ public class CheckService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        AlarmManager alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmMgr.cancel(mAlarm);
         //fix leak
         mHandler.removeMessages(MSG_HANDLE_CHECK);
         NgdsLog.e(TAG, "onDestroy");

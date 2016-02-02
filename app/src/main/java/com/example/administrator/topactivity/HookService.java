@@ -42,8 +42,7 @@ public class HookService extends AccessibilityService {
             );
 
             ActivityInfo activityInfo = tryGetActivity(componentName);
-            boolean isActivity = activityInfo != null;
-            if (isActivity) {
+            if (activityInfo != null) {
                 NgdsLog.e(TAG, componentName.flattenToShortString());
             }
         }
@@ -61,5 +60,17 @@ public class HookService extends AccessibilityService {
     @Override
     public void onInterrupt() {
         NgdsLog.e(TAG, "onInterrupt");
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        NgdsLog.e(TAG, "onCreate");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        NgdsLog.e(TAG, "onDestroy");
     }
 }
