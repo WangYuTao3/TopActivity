@@ -12,7 +12,8 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
+
+import com.example.administrator.topactivity.log.NgdsLog;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +28,7 @@ import java.util.List;
  */
 public class Utils {
 
-    public static PendingIntent startAlarmAndgetIntent(Context appContext , long repeatPeroid){
+    public static PendingIntent startAlarmAndgetIntent(Context appContext, long repeatPeroid) {
         AlarmManager alarmMgr;
         PendingIntent alarmIntent;
         alarmMgr = (AlarmManager) appContext.getSystemService(Context.ALARM_SERVICE);
@@ -151,7 +152,6 @@ public class Utils {
     //useless
     public static String getTopActClassNameFromPkgName(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
-        Log.e("wyt", "packageName:" + packageName);
         String result = "empty";
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -164,13 +164,12 @@ public class Utils {
             ResolveInfo resolveInfo = (ResolveInfo) method.invoke(packageManager, intent, PackageManager.GET_INTENT_FILTERS);
             if (resolveInfo != null) {
                 result = resolveInfo.activityInfo.name;
-                Log.e("wyt", "className:" + result);
+                NgdsLog.e("wyt", "className:" + result);
             } else {
-                Log.e("wyt", "componentName null");
+                NgdsLog.e("wyt", "componentName null");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("wyt", e.getMessage());
         }
         return result;
     }

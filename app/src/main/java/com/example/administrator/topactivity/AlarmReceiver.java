@@ -3,27 +3,30 @@ package com.example.administrator.topactivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
+import com.example.administrator.topactivity.log.NgdsLog;
 
 /**
  * Created by wangyt on 2016/1/29.
  * : 服务保活Receiver
  */
 public class AlarmReceiver extends BroadcastReceiver {
+    private static final String TAG = "AlarmReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        NgdsLog.initFileLoger(context, TAG);
         String action = intent.getAction();
         if (null == action) {
-            Log.e("wyt", "action is null");
+            NgdsLog.e(TAG, "action is null");
             return;
         }
         if (action.equals(CheckService.HEART_BEAT_ACTION)) {
-            Log.e("wyt", "beat alarm");
+            NgdsLog.e(TAG, "beat alarm");
             Intent startIntent = new Intent(context, CheckService.class);
             context.startService(startIntent);
         } else {
-            Log.e("wyt", "others");
+            NgdsLog.e(TAG, "others");
             Intent startIntent = new Intent(context, CheckService.class);
             context.startService(startIntent);
         }

@@ -8,25 +8,27 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.Log;
+
+import com.example.administrator.topactivity.log.NgdsLog;
 
 /**
  * Created by wangyt on 2015/11/30.
  * : HookService保活service
  */
 public class CheckService extends Service {
+    private static final String TAG = "CheckService";
+
     public final static String HEART_BEAT_ACTION = "com.wyt.android.intent.alarm";
     private static final String ACCESSIBILITY_SERVICE = "com.example.administrator.topactivity/com.example.administrator.topactivity.HookService";
-
     private static final int MSG_HANDLE_CHECK = 1;
-
-
     private static PendingIntent mAlarm;
+
     private Handler mHandler;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        NgdsLog.initFileLoger(this, TAG);
         mHandler = new HandleRun();
         mAlarm = Utils.startAlarmAndgetIntent(this, 5000);
     }
@@ -34,7 +36,7 @@ public class CheckService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("wyt", "onStartCommand");
+        NgdsLog.e(TAG, "onStartCommand");
         mHandler.sendEmptyMessageDelayed(MSG_HANDLE_CHECK, 1111);
         return START_STICKY;
     }
@@ -50,6 +52,7 @@ public class CheckService extends Service {
         AlarmManager alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmMgr.cancel(mAlarm);
         mHandler.removeMessages(MSG_HANDLE_CHECK);
+        NgdsLog.e(TAG, "onDestroy");
     }
 
     private void handleCheck() {
