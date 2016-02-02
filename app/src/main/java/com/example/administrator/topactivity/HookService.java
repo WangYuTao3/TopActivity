@@ -12,7 +12,7 @@ import com.example.administrator.topactivity.log.NgdsLog;
 
 /**
  * Created by wangyt on 2016/1/18.
- * : topActivity实现Service
+ * : 获取topActivity实现
  */
 public class HookService extends AccessibilityService {
     private static final String TAG = "HookService";

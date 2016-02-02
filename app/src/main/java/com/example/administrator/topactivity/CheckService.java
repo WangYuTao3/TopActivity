@@ -13,12 +13,12 @@ import com.example.administrator.topactivity.log.NgdsLog;
 
 /**
  * Created by wangyt on 2015/11/30.
- * : HookService保活service
+ * : HookService保活服务
  */
 public class CheckService extends Service {
     private static final String TAG = "CheckService";
 
-    public final static String HEART_BEAT_ACTION = "com.wyt.android.intent.alarm";
+    public  static final String HEART_BEAT_ACTION = "com.wyt.android.intent.alarm";
     private static final String ACCESSIBILITY_SERVICE = "com.example.administrator.topactivity/com.example.administrator.topactivity.HookService";
     private static final int MSG_HANDLE_CHECK = 1;
     private static PendingIntent mAlarm;
@@ -51,6 +51,7 @@ public class CheckService extends Service {
         super.onDestroy();
         AlarmManager alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmMgr.cancel(mAlarm);
+        //fix leak
         mHandler.removeMessages(MSG_HANDLE_CHECK);
         NgdsLog.e(TAG, "onDestroy");
     }

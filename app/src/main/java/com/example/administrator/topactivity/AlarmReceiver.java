@@ -8,7 +8,7 @@ import com.example.administrator.topactivity.log.NgdsLog;
 
 /**
  * Created by wangyt on 2016/1/29.
- * : 服务保活Receiver
+ * : 各种触发以及闹钟的intent接收器
  */
 public class AlarmReceiver extends BroadcastReceiver {
     private static final String TAG = "AlarmReceiver";
