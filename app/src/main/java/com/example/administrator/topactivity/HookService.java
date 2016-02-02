@@ -15,14 +15,15 @@ import android.view.accessibility.AccessibilityEvent;
 
 /**
  * Created by wangyt on 2016/1/18.
- * : description
+ * : topActivity实现Service
  */
 public class HookService extends AccessibilityService {
 
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
-        //begin hook
+        Log.e("wyt", "onServiceConnected");
+
         AccessibilityServiceInfo config = new AccessibilityServiceInfo();
         config.eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
         config.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
@@ -30,13 +31,12 @@ public class HookService extends AccessibilityService {
             config.flags = AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
 
         setServiceInfo(config);
-        Log.e("wyt", "onServiceConnected");
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         Log.e("wyt", "onAccessibilityEvent");
-        //event callback
+
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             ComponentName componentName = new ComponentName(
                     event.getPackageName().toString(),

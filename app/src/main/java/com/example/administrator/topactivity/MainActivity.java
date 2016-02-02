@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button:
-                Intent intent = new Intent(this, MyService.class);
+                Intent intent = new Intent(this, CheckService.class);
                 startService(intent);
-                Toast.makeText(this, "开启服务", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

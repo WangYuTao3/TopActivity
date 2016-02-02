@@ -2,11 +2,14 @@ package com.example.administrator.topactivity;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,6 +26,21 @@ import java.util.List;
  * : description
  */
 public class Utils {
+
+    public static PendingIntent startAlarmAndgetIntent(Context appContext , long repeatPeroid){
+        AlarmManager alarmMgr;
+        PendingIntent alarmIntent;
+        alarmMgr = (AlarmManager) appContext.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(appContext, AlarmReceiver.class);
+        intent.setAction(CheckService.HEART_BEAT_ACTION);
+        alarmIntent = PendingIntent.getBroadcast(appContext, 0, intent, 0);
+        try {
+            alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, SystemClock.currentThreadTimeMillis(), repeatPeroid, alarmIntent);
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+        return alarmIntent;
+    }
 
     public static boolean isAccessibilityEnabled(Context context, String name) {
         int accessibilityEnabled = 0;
