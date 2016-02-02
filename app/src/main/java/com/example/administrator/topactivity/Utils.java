@@ -28,6 +28,31 @@ import java.util.List;
  */
 public class Utils {
 
+    /**
+     * 检测开机启动是否被禁用
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static boolean isEnableBootFromPackageName(Context context, String packageName) {
+        Intent intent = new Intent("android.intent.action.BOOT_COMPLETED");
+        List<ResolveInfo> list = context.getPackageManager().queryBroadcastReceivers(intent, 0);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).activityInfo.packageName.equals(packageName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 设置闹钟
+     *
+     * @param appContext
+     * @param repeatPeroid
+     * @return
+     */
     public static PendingIntent startAlarmAndgetIntent(Context appContext, long repeatPeroid) {
         AlarmManager alarmMgr;
         PendingIntent alarmIntent;
@@ -43,6 +68,13 @@ public class Utils {
         return alarmIntent;
     }
 
+    /**
+     * 判断Access服务是否开启
+     *
+     * @param context
+     * @param name
+     * @return
+     */
     public static boolean isAccessibilityEnabled(Context context, String name) {
         int accessibilityEnabled = 0;
         boolean accessibilityFound = false;
@@ -70,7 +102,7 @@ public class Utils {
         return accessibilityFound;
     }
 
-
+    //一下无用
     public static String getTopActPkgNameFromProcess(Context context) {
         ActivityManager.RunningAppProcessInfo currentInfo = null;
         Field field = null;
