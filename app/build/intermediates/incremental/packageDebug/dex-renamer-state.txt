@@ -1,7 +1,0 @@
-#Mon May 15 14:57:17 CST 2017
-base.0=/Users/wangyt/TopActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_045117c2a768b258234c7b76725c35315ce01b8c
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/Users/wangyt/TopActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_874b9f0fb1a5e288899b4a8704bad0819c4b7eb3/classes.dex
-base.1=/Users/wangyt/TopActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_874b9f0fb1a5e288899b4a8704bad0819c4b7eb3
-file.0=/Users/wangyt/TopActivity/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_045117c2a768b258234c7b76725c35315ce01b8c/classes.dex
