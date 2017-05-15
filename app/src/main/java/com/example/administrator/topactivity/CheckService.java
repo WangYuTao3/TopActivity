@@ -1,5 +1,6 @@
 package com.example.administrator.topactivity;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
@@ -11,7 +12,7 @@ import com.example.administrator.topactivity.log.NgdsLog;
 
 /**
  * Created by wangyt on 2015/11/30.
- * : HookService保活服务
+ * : 流氓服务，强制用户开启辅助服务
  */
 public class CheckService extends Service {
     private static final String TAG = "CheckService";
@@ -23,6 +24,7 @@ public class CheckService extends Service {
     private Handler mHandler;
     private Toast mToast;
 
+    @SuppressLint("ShowToast")
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,7 +32,7 @@ public class CheckService extends Service {
         NgdsLog.e(TAG, "onCreate");
         mHandler = new HandleRun();
         mToast = Toast.makeText(this, "请设置为开机启动项", Toast.LENGTH_SHORT);
-        Utils.startAlarmAndgetIntent(this, 5000);
+        Utils.startAlarmAndGetIntent(this, 5000);
     }
 
 

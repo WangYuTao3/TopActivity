@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Created by wangyt on 2016/1/29.
- * : description
+ * : 工具
  */
 public class Utils {
 
@@ -53,7 +53,7 @@ public class Utils {
      * @param repeatPeroid
      * @return
      */
-    public static PendingIntent startAlarmAndgetIntent(Context appContext, long repeatPeroid) {
+    public static PendingIntent startAlarmAndGetIntent(Context appContext, long repeatPeroid) {
         AlarmManager alarmMgr;
         PendingIntent alarmIntent;
         alarmMgr = (AlarmManager) appContext.getSystemService(Context.ALARM_SERVICE);
@@ -102,7 +102,7 @@ public class Utils {
         return accessibilityFound;
     }
 
-    //一下无用
+    //下面这些试过，没卵用
     public static String getTopActPkgNameFromProcess(Context context) {
         ActivityManager.RunningAppProcessInfo currentInfo = null;
         Field field = null;
@@ -129,7 +129,7 @@ public class Utils {
                 } catch (Exception e) {
                     return null;
                 }
-                if (state != null && state == START_TASK_TO_FRONT) {
+                if (state == START_TASK_TO_FRONT) {
                     currentInfo = app;
                     break;
                 }
@@ -141,7 +141,6 @@ public class Utils {
         return pkgName;
     }
 
-    //useless
     public static String getTopActClassNameFromADB(Context context) {
         String result = "";
         try {
@@ -181,7 +180,6 @@ public class Utils {
         return result.toString();
     }
 
-    //useless
     public static String getTopActClassNameFromPkgName(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
         String result = "empty";
